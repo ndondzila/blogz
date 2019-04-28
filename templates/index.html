@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Click a username to view their blog posts!</h1>
+    <hr>
+    <table>
+    {% for user in users %}
+    <tr>
+    <td><a href="/user?username={{user.username}}"><h2 name="{user.username}">{{user.username}}</h2></a></td>
+    </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}

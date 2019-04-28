@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <header>
+        <a href="/">Home</a>
+        <a href="/blog">Blogs</a>
+        <a href="/newpost">Add New Post</a>
+        <a href="/login">Login</a>
+        <a href="/logout">Logout</a>
+        
+        
+
+        <style>
+            html {background-color: lightgreen}
+            br {margin-bottom: 20px;}
+            .error {color: red; font-weight: bold;}
+            h1 {text-align: center; font-size: 300%; font-weight: bold;}
+            label {text-align: center; font-size: 200%}
+            textarea {align-self: auto;}
+    
+        </style>
+
+        <title>{{title}}</title>
+
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        <ul>
+        {% for category,message in messages %}
+            <li class="{{category}}">{{message}}</li>
+        {% endfor %}
+        </ul>
+    {% endwith %}
+    
+<body>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

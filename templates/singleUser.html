@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{user}}'s Blog Posts!</h1>
+    <h5>Number of posts = {{number_posts}}</h5>
+    <hr>
+    <table>
+        {% for blog in blogs %}
+        <tr>
+            <td><a href="/blog?id={{blog.id}}"><h3>{{blog.title}}</h3></a></td>
+        </tr>
+        <tr>
+            <td><p>{{blog.content}}</p></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
