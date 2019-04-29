@@ -52,7 +52,7 @@ def login():
         if user and user.password == password:
             session['username'] = username
             flash("Logged in!")
-            return redirect('/')
+            return redirect('/blog')
         elif user and user.password != password:
             flash('Incorrect password; please double check and try again!', 'error')
         else:
@@ -88,7 +88,7 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             session['username'] = username
-            return redirect('/newpost')
+            return redirect('/blog')
             
     return render_template('signup.html', title="Sign-up")
         
@@ -96,7 +96,7 @@ def register():
 @app.route('/logout')
 def logout():
     del session['username']
-    return redirect('/')
+    return redirect('/signup')
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
@@ -119,8 +119,8 @@ def newpost():
             new_blog = Blog(title, content, owner)
             db.session.add(new_blog)
             db.session.commit()
-
-            return redirect('/')
+            blog = Blog.query.filter_by(id=new_blog.id)
+            return render_template("blog.html", blog=blog)
         
     return render_template("newpost.html", title_error=title_error, content_error=content_error, title="New Post")
 
